@@ -11,13 +11,18 @@ CSCI 380 - Individual Project
   npm install react-native-custom-qr-codes
   <!-- npm install crypto-js -->
   expo install expo-google-app-auth
+  npm install @react-navigation/bottom-tabs
+  expo install @expo/vector-icons
+  npm install react-navigation
+  npm install @react-navigation/native
+  npm install --save react-native-gesture-handler react-native-reanimated react-native-screens
   ```
   <br>
 
   * Create a Google API: <a href="https://console.developers.google.com/apis/dashboard"> here </a>
   * Note: <br>
     a. Use your own API key. Never share with anyone else. <br>
-    b. Use ```host.exp.exponent``` as the “Package name” in the Google Cloud Console, otherwise you will face ```Error 400: redirect_uri_mismatch```.<br>
+    b. Use ```host.exp.exponent``` as the “Package name” or "Bundle ID" in the Google Cloud Console, otherwise you will face ```Error 400: redirect_uri_mismatch```.<br>
     c. Use ```openssl rand -base64 32 | openssl sha1 -c``` to generate openssl key
 
 ## Run the app

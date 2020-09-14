@@ -1,97 +1,56 @@
-import React from "react"
-import { StyleSheet, Text, View, Image, Button } from "react-native"
-import * as Google from 'expo-google-app-auth';
+import * as React from "react";
+import { StyleSheet, Text, View, Image, Button } from "react-native";
+import { NavigationContainer } from '@react-navigation/native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+// import * as Google from 'expo-google-app-auth';
+import {Ionicons} from '@expo/vector-icons';
+import HomeScreen from './components/HomeScreen';
+import SearchScreen from './components/SearchScreen';
+import AccScreen from './components/AccScreen';
 
-export default class App extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      signedIn: false,
-      name: "",
-      photoUrl: ""
-    }
-  }
+const Tab = createBottomTabNavigator();
 
+// constructor(props) {
+//   super(props)
+//   this.state = {
+//     signedIn: false,
+//     name: "",
+//     photoUrl: ""
+//   }
+// }
 
-  signIn = async () => {
+export default function App() {
 
-    try {
-      const result = await Google.logInAsync({
-        androidClientId: "<YOUR GOOGLE API KEY HERE>",
-        // iosClientId: YOUR_CLIENT_ID_HERE,
-        scopes: ['profile', 'email'],
-      });
-  
-      if (result.type === 'success') {
-
-        this.setState({
-          signedIn: true,
-          name: result.user.name,
-          photoUrl: result.user.photoUrl
-        })
-
-        console.log("\n\nRESULT: ", result, "\n\n")
-
-        // return result.accessToken;
-        // console.log("Successful: ", result)
-      } else {
-        console.log(result)
-      }
-    } catch (e) {
-      console.log('Error due to: ', e)
-    }
-
-  }
-
-
-  render() {
-    return (
-      <View style={styles.container}>
-        {this.state.signedIn ? (
-          <LoggedInPage name={this.state.name} photoUrl={this.state.photoUrl} />
-        ) : (
-          <LoginPage signIn={this.signIn} />
-        )}
-      </View>
-    )
-  }
-}
-
-
-const LoginPage = props => {
   return (
-    <View>
-      <Text style={styles.header}>Sign In With Google</Text>
-      <Button title="Sign in with Google" onPress={() => props.signIn()} />
-    </View>
-  )
-}
+    <NavigationContainer>
+      <Tab.Navigator
+        screenOptions={({ route }) => ({
+          tabBarIcon: ({ focused, color, size }) => {
+            let iconName;
 
-const LoggedInPage = props => {
-  return (
-    <View style={styles.container}>
-      <Text style={styles.header}>Welcome:{props.name}</Text>
-      <Image style={styles.image} source={{ uri: props.photoUrl }} />
-    </View>
-  )
-}
+            if (route.name === 'Home') {
+              iconName = focused ? 'ios-home' : 'ios-home';
+            } else if (route.name === 'Account') {
+              iconName = focused ? 'ios-person' : 'ios-person';
+            } else if (route.name === 'Search'){
+              iconName = focused ? 'ios-search' : 'ios-search';
+            }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center"
-  },
-  header: {
-    fontSize: 25
-  },
-  image: {
-    marginTop: 15,
-    width: 150,
-    height: 150,
-    borderColor: "rgba(0,0,0,0.2)",
-    borderWidth: 3,
-    borderRadius: 150
-  }
-})
+            // You can return any component that you like here!
+            return <Ionicons name={iconName} size={size} color={color} />;
+          },
+        })}
+
+        tabBarOptions={{
+          activeTintColor: 'black',
+          inactiveTintColor: 'gray',
+        }}
+      >
+        <Tab.Screen name="Home" component={HomeScreen} />
+        <Tab.Screen name="Search" component={SearchScreen} />
+        <Tab.Screen name="Account" component={AccScreen} />
+      </Tab.Navigator>
+    </NavigationContainer>
+  );
+
+}

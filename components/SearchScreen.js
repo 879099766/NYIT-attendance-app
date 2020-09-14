@@ -1,0 +1,18 @@
+import * as React from 'react';
+import { StyleSheet, Text, View } from 'react-native';
+
+export default function searchScreen(){
+  return (
+    <View style={styles.buttonBar_itme}>
+      <Text>This is search panel!</Text>
+    </View>
+  );
+}
+
+const styles = StyleSheet.create({
+  buttonBar_itme: {
+    flex: 1, 
+    justifyContent: 'center', 
+    alignItems: 'center',
+  },
+});
