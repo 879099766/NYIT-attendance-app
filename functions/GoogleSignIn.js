@@ -3,7 +3,7 @@ import { StyleSheet, Text, View, Image, Button } from "react-native";
 import * as Google from 'expo-google-app-auth';
 
 
-const GoogleSignIn = props => {
+function GoogleSignIn (){
   
   signIn = async () => {
     try {

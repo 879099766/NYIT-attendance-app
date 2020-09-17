@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
-import EntypoIcon from "react-native-vector-icons/Entypo";
+import Icon from "react-native-vector-icons/MaterialCommunityIcons";
+import QR_generate from "../functions/QR_generate";
 
 export default function HomeScreen() {
   return (
@@ -8,16 +9,16 @@ export default function HomeScreen() {
       <View style={styles.group}>
         <View style={styles.buttonRow}>
           <TouchableOpacity style={styles.button}>
-            <EntypoIcon name="camera" style={styles.icon}></EntypoIcon>
+            <Icon name="qrcode-scan" style={styles.icon}></Icon>
             <Text style={styles.scanRqCode}>Scan QR Code</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.button2}>
-            <EntypoIcon name="add-to-list" style={styles.icon}></EntypoIcon>
+            <Icon name="qrcode-edit" style={styles.icon}></Icon>
             <Text style={styles.generateRqCode}>Generate QR Code</Text>
           </TouchableOpacity>
         </View>
-        <TouchableOpacity style={styles.button3}>
-          <EntypoIcon name="add-to-list" style={styles.icon}></EntypoIcon>
+        <TouchableOpacity style={styles.button3} onPress={QR_generate}>
+          <Icon name="view-list" style={styles.icon}></Icon>
           <Text style={styles.scanRqCode}>View List</Text>
         </TouchableOpacity>
       </View>
@@ -26,6 +27,13 @@ export default function HomeScreen() {
 }
 
 const styles = StyleSheet.create({
+
+  cotainer: {
+    flex: 1,
+    justifyContent: 'space-evenly',
+    // alignItems: 'center',
+  },
+
   group: {
     width: 140,
     height: 19,
@@ -36,7 +44,8 @@ const styles = StyleSheet.create({
   button: {
     width: 150,
     height: 150,
-    backgroundColor: "rgba(80,227,194,1)",
+    // backgroundColor: "rgba(80,227,194,1)",
+    backgroundColor: "white",
     borderWidth: 1,
     borderColor: "rgba(246,246,246,1)",
     borderStyle: "solid",
@@ -78,7 +87,7 @@ const styles = StyleSheet.create({
   button2: {
     width: 150,
     height: 150,
-    backgroundColor: "rgba(74,144,226,1)",
+    backgroundColor: "white",
     borderWidth: 1,
     borderColor: "rgba(246,246,246,1)",
     borderStyle: "solid",
@@ -120,7 +129,7 @@ const styles = StyleSheet.create({
   button3: {
     width: 150,
     height: 150,
-    backgroundColor: "rgba(189,16,224,1)",
+    backgroundColor: "white",
     borderWidth: 1,
     borderColor: "rgba(246,246,246,1)",
     borderStyle: "solid",

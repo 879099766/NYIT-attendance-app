@@ -10,16 +10,16 @@ import AccScreen from './components/AccScreen';
 
 const Tab = createBottomTabNavigator();
 
-// constructor(props) {
-//   super(props)
-//   this.state = {
-//     signedIn: false,
-//     name: "",
-//     photoUrl: ""
-//   }
-// }
-
 export default function App() {
+
+  // constructor(props) {
+  //   super(props)
+  //   this.state = {
+  //     signedIn: false,
+  //     name: "",
+  //     photoUrl: ""
+  //   }
+  // }
 
   return (
     <NavigationContainer>
