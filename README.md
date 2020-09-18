@@ -6,16 +6,7 @@ CSCI 380 - M01 - Individual Project
 ## Get start
   * install the required libraries<br>
   ```
-  sudo npm install -g react-native-cli
-  npm install react-native-svg
-  npm install react-native-custom-qr-codes
-  <!-- npm install crypto-js -->
-  expo install expo-google-app-auth
-  npm install @react-navigation/bottom-tabs
-  expo install @expo/vector-icons
-  npm install react-navigation
-  npm install @react-navigation/native
-  npm install --save react-native-gesture-handler react-native-reanimated react-native-screens
+  sudo ./setup.sh
   ```
   <br>
 
