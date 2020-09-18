@@ -1,5 +1,5 @@
 # NYIT-attendance-app
-CSCI 380 - Individual Project
+CSCI 380 - M01 - Individual Project
 
 ---
 

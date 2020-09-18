@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, Dimensions } from 'react-native';
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 import QR_generate from "../functions/QR_generate";
 
@@ -28,17 +28,22 @@ export default function HomeScreen() {
 
 const styles = StyleSheet.create({
 
-  cotainer: {
-    flex: 1,
-    justifyContent: 'space-evenly',
+  container: {
+    // flex: 1,
+    width: Dimensions.get('window').width,
+    // backgroundColor: 'red',
+    // alignContent: 'flex-start',
+    // justifyContent: 'space-evenly',
     // alignItems: 'center',
   },
 
   group: {
-    width: 140,
+    width: Dimensions.get('window').width,
     height: 19,
     marginTop: 378,
     margin: 45,
+    // alignItems: 'flex-start',
+    // backgroundColor: 'blue',
   },
 
   button: {
