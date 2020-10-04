@@ -6,7 +6,7 @@ CSCI 380 - M01 - Individual Project
 ## Get start
   * install the required libraries<br>
   ```
-  sudo ./setup.sh
+  sh ./setup.sh
   ```
   <br>
 
