@@ -7,6 +7,7 @@ CSCI 380 - M01 - Individual Project
   * install the required libraries<br>
   ```
   sh ./setup.sh
+  npm install
   ```
   <br>
 
