@@ -1,25 +1,25 @@
 import * as React from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, Dimensions } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, Dimensions, Alert } from 'react-native';
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 import QR_generate from "../functions/QR_generate";
 
-export default function HomeScreen() {
+export default function HomeScreen({navigation}) {
   return (
     <View style={styles.container}>
       <View style={styles.group}>
         <View style={styles.buttonRow}>
-          <TouchableOpacity style={styles.button}>
+          <TouchableOpacity style={styles.button} onPress={() => navigation.navigate("CameraAccess")}>
             <Icon name="qrcode-scan" style={styles.icon}></Icon>
-            <Text style={styles.scanRqCode}>Scan QR Code</Text>
+            <Text style={styles.scanRqCode1}>Scan QR Code</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.button2}>
             <Icon name="qrcode-edit" style={styles.icon}></Icon>
-            <Text style={styles.generateRqCode}>Generate QR Code</Text>
+            <Text style={styles.generateRqCode}>Create QR Code</Text>
           </TouchableOpacity>
         </View>
         <TouchableOpacity style={styles.button3} onPress={QR_generate}>
           <Icon name="view-list" style={styles.icon}></Icon>
-          <Text style={styles.scanRqCode}>View List</Text>
+          <Text style={styles.scanRqCode2}>View List</Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -77,7 +77,7 @@ const styles = StyleSheet.create({
     marginLeft: 55
   },
 
-  scanRqCode: {
+  scanRqCode1: {
     // fontFamily: "roboto-700",
     color: "rgba(0,0,0,1)",
     width: 120,
@@ -85,7 +85,19 @@ const styles = StyleSheet.create({
     textAlign: "right",
     height: 19,
     marginTop: 20,
-    marginLeft: 15,
+    marginLeft: 10,
+    fontWeight: 'bold'
+  },
+
+  scanRqCode2: {
+    // fontFamily: "roboto-700",
+    color: "rgba(0,0,0,1)",
+    width: 120,
+    fontSize: 16,
+    textAlign: "right",
+    height: 19,
+    marginTop: 20,
+    marginLeft: -10,
     fontWeight: 'bold'
   },
 
