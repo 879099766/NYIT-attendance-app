@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "xxxxxxxxxxxxxxxxxxxxxxxxx",
+    "firebase_url": "https://xxxxxxxxxxxxxxxxxxxxxxxxxbase-ec822.firebaseio.com",
+    "project_id": "xxxxxxxxxxxxxxxxxxxxxxxxxbase-ec822",
+    "storage_bucket": "xxxxxxxxxxxxxxxxxxxxxxxxxbase-ec822.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:xxxxxxxxxxxxxxxxxxxxxxxxx:android:xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+        "android_client_info": {
+          "package_name": "com.uitest.rn"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "xxxxxxxxxxxxxxxxxxxxxxxxx.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "xxxxxxxxxxxxxxxxxxxxxxxxx"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "xxxxxxxxxxxxxxxxxxxxxxxxx.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

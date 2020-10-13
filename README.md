@@ -12,10 +12,12 @@ CSCI 318 - Group Project
   <br>
 
   * Create a Google API: <a href="https://console.developers.google.com/apis/dashboard"> here </a>
+  * Sign up firebase: <a href="https://console.firebase.google.com/">here</a>
   * Note: <br>
     a. Use your own API key. Never share with anyone else. <br>
     b. Use ```host.exp.exponent``` as the “Package name”(Android) or "Bundle ID"(IOS) in the Google Cloud Console, otherwise you will face ```Error 400: redirect_uri_mismatch```.<br>
-    c. Use ```openssl rand -base64 32 | openssl sha1 -c``` to generate openssl key
+    c. Use ```openssl rand -base64 32 | openssl sha1 -c``` to generate openssl key<br>
+    d. Place "google-services.json" under android directory
 
 ## Run the app
   ```
