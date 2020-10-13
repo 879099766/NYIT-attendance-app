@@ -41,3 +41,4 @@ CSCI 318 - Group Project
   2. Scan QR Code with React Native: <a href="https://github.com/moaazsidat/react-native-qrcode-scanner"> here</a>
   3. Wifi controlling with React Native: <a href="https://www.npmjs.com/package/react-native-wifi-reborn"> here</a>
   4. Expo login Google with NYIT credential: <a href="https://blog.expo.io/google-sign-in-with-react-native-and-expo-9cac6c392f0e"> here</a>
+  5. Firebase CRUD: <a href="https://www.positronx.io/create-react-native-firebase-crud-app-with-firestore/"> here</a>
