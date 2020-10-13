@@ -6,7 +6,6 @@ CSCI 318 - Group Project
 ## Get start
   * install the required libraries<br>
   ```
-  sh ./setup.sh
   npm install
   ```
   <br>
