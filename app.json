@@ -19,14 +19,18 @@
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.webiosandroid.all",
-      "config":{
-        "googleSignIn":{
+      "config": {
+        "googleSignIn": {
           "reservedClientId": "com.googleusercontent.apps.22485765223-ta954499udbfqoi4bmekpvi73lgkb5me"
         }
       }
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "android": {
+      "package": "com.nyitattendance.rn"
+    },
+    "entryPoint": "node_modules/expo/AppEntry.js"
   }
 }
