@@ -2,26 +2,26 @@ import * as firebase from 'firebase';
 import firestore from 'firebase/firestore';
 
 const config = {
-  // API Key
-  apiKey: "xxxxxxxxxxxxxxxxxxxxxxxxx",
+  // api_key
+  apiKey: "AIzaSyDCYPgLjlChuJbC-FMGyNOYkaao8ULyYWE",
 
   // storage_bucket ID
-  authDomain: "xxxxxxxxxxxxxxxxxxxxxxxxxbase-ec822.appspot.com",
+  authDomain: "reactnativefirebase-ec822.appspot.com",
   
   // firebase_url
-  databaseURL: "https://xxxxxxxxxxxxxxxxxxxxxxxxxbase-ec822.firebaseio.com",
+  databaseURL: "https://reactnativefirebase-ec822.firebaseio.com",
   
   // project_id
-  projectId: "xxxxxxxxxxxxxxxxxxxxxxxxxbase-ec822",
+  projectId: "reactnativefirebase-ec822",
   
   // storage_bucket
-  storageBucket: "xxxxxxxxxxxxxxxxxxxxxxxxxbase-ec822.appspot.com",
+  storageBucket: "reactnativefirebase-ec822.appspot.com",
 
   // project_number
-  messagingSenderId: "xxxxxxxxxxxxxxxxxxxxxxxxx",
+  messagingSenderId: "154770876179",
 
   // mobilesdk_app_id
-  appId: "1:xxxxxxxxxxxxxxxxxxxxxxxxx:android:xxxxxxxxxxxxxxxxxxxxxxxxx",
+  appId: "1:154770876179:android:10714512d67f9f26a8dce6",
 };
 
 firebase.initializeApp(config);
