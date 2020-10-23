@@ -90,3 +90,31 @@ console.error: SearchCache: "_readCacheFile: Error reading cache file:" (new Err
 1602085756861	Marionette	INFO	Listening on port 38227
 1602085756898	Marionette	WARN	TLS certificate errors will be ignored for this session
 1602085849988	Marionette	INFO	Stopped listening on port 38227
+1603415316873	geckodriver	INFO	Listening on 127.0.0.1:42633
+1603415317887	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "-headless" "--disable-extensions" "--disable-infobars" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofileLTWR0v"
+*** You are running in headless mode.
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+1603415319320	Marionette	INFO	Listening on port 42677
+1603415319409	Marionette	WARN	TLS certificate errors will be ignored for this session
+1603415324961	Marionette	INFO	Stopped listening on port 42677
+1603415568864	geckodriver	INFO	Listening on 127.0.0.1:35027
+1603415568876	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "-headless" "--disable-extensions" "--disable-infobars" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofileZKkmJi"
+*** You are running in headless mode.
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+1603415570385	Marionette	INFO	Listening on port 36691
+1603415570517	Marionette	WARN	TLS certificate errors will be ignored for this session
+1603415647159	Marionette	INFO	Stopped listening on port 36691
+1603415800853	geckodriver	INFO	Listening on 127.0.0.1:49325
+1603415800861	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "-headless" "--disable-extensions" "--disable-infobars" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofiledrzIGQ"
+*** You are running in headless mode.
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+1603415802462	Marionette	INFO	Listening on port 43069
+1603415802529	Marionette	WARN	TLS certificate errors will be ignored for this session
+1603415827814	Marionette	INFO	Stopped listening on port 43069
+1603415903858	geckodriver	INFO	Listening on 127.0.0.1:51091
+1603415903870	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "-headless" "--disable-extensions" "--disable-infobars" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofilewAn0RB"
+*** You are running in headless mode.
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+1603415905403	Marionette	INFO	Listening on port 45067
+1603415905493	Marionette	WARN	TLS certificate errors will be ignored for this session
+1603415927608	Marionette	INFO	Stopped listening on port 45067

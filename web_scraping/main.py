@@ -30,7 +30,7 @@ try:
         URL = URL + str(i)
 
         #sleep to ensure IP address is not blocked
-        time.sleep(random.randint(1, 6))
+        # time.sleep(random.randint(1, 6))
 
         # print(URL)
         # open a page
@@ -52,8 +52,11 @@ try:
                 if herf2 not in email:
                   email.append(herf2)
 
-        for ele in email:
-            print(ele)
+        with open("output.txt", encoding='utf-8', mode='w') as output:
+          for item in email:
+            output.write(item + "\n")
+
+          output.close()
       
       else:
         print("Error due to: ", r.status_code, " at ", i)
