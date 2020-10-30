@@ -1,111 +1,118 @@
 import React, { Component } from "react";
-import { StyleSheet, View, Text, Dimensions } from "react-native";
-import EntypoIcon from "react-native-vector-icons/Entypo";
-import FontAwesomeIcon from "react-native-vector-icons/FontAwesome";
+import {
+  StyleSheet,
+  View,
+  StatusBar,
+  Text,
+  TouchableOpacity,
+} from "react-native";
+import FeatherIcon from "react-native-vector-icons/Feather";
 
-export default function MeScreen() {
+function AccScreen(props) {
   return (
     <View style={styles.container}>
-    <View style={styles.group}>
-      <View style={styles.rect}>
-        <View style={styles.iconRow}>
-          <EntypoIcon name="user" style={styles.icon}></EntypoIcon>
-          <View style={styles.nameColumn}>
-            <Text style={styles.name}>Name</Text>
-            <Text style={styles.name2}>Email: example@gmail.com</Text>
+      {/* <StatusBar hidden /> */}
+      <View style={styles.group}>
+        <View style={styles.rect}>
+          <View style={styles.iconRow}>
+            <FeatherIcon name="user" style={styles.icon}></FeatherIcon>
+            <View style={styles.namesColumn}>
+              <Text style={styles.names}>{props.profile_name}</Text>
+              <Text style={styles.email}>Email: {props.profile_mail}</Text>
+            </View>
           </View>
         </View>
       </View>
-    </View>
-    <View style={styles.group2}>
-      <View style={styles.rect2}>
-        <View style={styles.icon2Row}>
-          <FontAwesomeIcon
-            name="sign-out"
-            style={styles.icon2}
-          ></FontAwesomeIcon>
-          <Text style={styles.signOut}>Sign Out</Text>
+      <TouchableOpacity style={styles.button}>
+        <View style={styles.rect2}>
+          <View style={styles.icon2Stack}>
+            <FeatherIcon name="log-out" style={styles.icon2}></FeatherIcon>
+            <Text style={styles.signOut}>Sign Out</Text>
+          </View>
         </View>
-      </View>
+      </TouchableOpacity>
     </View>
-  </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1
+    flex: 1,
+    backgroundColor: "#F2F2F2",
   },
   group: {
-    width: Dimensions.get('window').width,
-    // alignSelf: 'flex-start',
-    height: 100,
-    marginTop: 66
+    height: 140,
+    marginTop: 60,
   },
   rect: {
-    width: Dimensions.get('window').width,
-    // alignSelf: 'flex-start',
-    height: 100,
-    backgroundColor: "#E6E6E6"
+    height: 140,
+    backgroundColor: "rgba(255,255,255,1)",
   },
   icon: {
     color: "rgba(128,128,128,1)",
-    fontSize: 40,
-    height: 44,
-    width: 40
+    fontSize: 60,
+    width: 60,
+    height: 60,
   },
-  name: {
-    // fontFamily: "roboto-regular",
+  names: {
+    // fontFamily: "roboto-700",
     color: "#121212",
-    fontWeight: 'bold',
     fontSize: 16,
   },
-  name2: {
+  email: {
     // fontFamily: "roboto-regular",
-    color: "rgba(94,94,94,1)",
-    marginTop: 5,
-    width: Dimensions.get('window').width,
+    color: "rgba(121,121,121,1)",
+    fontSize: 12,
+    marginTop: 17,
   },
-  nameColumn: {
-    width: 173,
-    marginLeft: 28
+  namesColumn: {
+    width: 164,
+    marginLeft: 24,
+    marginTop: 5,
+    marginBottom: 5,
   },
   iconRow: {
-    height: 44,
+    height: 60,
     flexDirection: "row",
-    marginTop: 28,
-    marginLeft: 24,
-    marginRight: 95
+    marginTop: 40,
+    marginLeft: 25,
+    marginRight: 87,
   },
-  group2: {
-    width: Dimensions.get('window').width,
+  button: {
     height: 50,
-    marginTop: 65
+    marginTop: 46,
   },
   rect2: {
-    width: Dimensions.get('window').width,
     height: 50,
-    backgroundColor: "#E6E6E6",
-    flexDirection: "row"
+    backgroundColor: "rgba(255,255,255,1)",
   },
   icon2: {
-    color: "red",
-    fontSize: 30,
-    height: 30,
-    width: 28
+    top: 0,
+    left: -1,
+    position: "absolute",
+    color: "rgba(244,0,0,1)",
+    fontSize: 32,
+    width: 60,
+    height: 32,
   },
   signOut: {
+    top: 8,
+    left: 58,
+    position: "absolute",
     // fontFamily: "roboto-regular",
-    color: "red",
-    marginLeft: 23,
-    marginTop: 7
+    color: "rgba(241,6,6,1)",
   },
-  icon2Row: {
-    height: 30,
-    flexDirection: "row",
-    flex: 1,
-    marginRight: 238,
-    marginLeft: 18,
-    marginTop: 10
-  }
+  icon2Stack: {
+    width: 111,
+    height: 32,
+    marginTop: 9,
+    marginLeft: 21,
+  },
+  materialIconTextButtonsFooter: {
+    height: 56,
+    backgroundColor: "rgba(255,255,255,1)",
+    marginTop: 388,
+  },
 });
+
+export default AccScreen;
