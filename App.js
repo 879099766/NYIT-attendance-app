@@ -39,7 +39,7 @@ export default class App extends React.Component {
     try {
       const result = await Google.logInAsync({
         androidClientId:
-          "117030962609-9mblopptuccmm9fqhi2uv7eeea9bk1vh.apps.googleusercontent.com",
+          "<YOUR GOOGLE API KEY>",
         // iosClientId: YOUR_CLIENT_ID_HERE,
         scopes: ["profile", "email"],
       });
