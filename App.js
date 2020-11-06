@@ -6,6 +6,7 @@ import { Ionicons } from "@expo/vector-icons";
 import FeatherIcon from "react-native-vector-icons/Feather";
 import MaterialCommunityIconsIcon from "react-native-vector-icons/MaterialCommunityIcons";
 import * as Google from "expo-google-app-auth";
+// import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 import HomeScreen from "./components/test_HomeRoot";
 import SearchScreen from "./components/SearchScreen";
@@ -22,24 +23,25 @@ function LoginPage(props) {
 }
 
 const Tab = createBottomTabNavigator();
+
 export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       signedIn: false,
-      name: "",
+      full_name: "",
+      last_name: "",
+      first_name: "",
+      email: "",
       photoUrl: "",
-      nyit_email: "",
     };
   }
 
-  // set up a var called "signIn"
-  // then Google API will return this var as user obj
   signIn = async () => {
     try {
       const result = await Google.logInAsync({
         androidClientId:
-          "<YOUR GOOGLE API KEY>",
+          "117030962609-9mblopptuccmm9fqhi2uv7eeea9bk1vh.apps.googleusercontent.com",
         // iosClientId: YOUR_CLIENT_ID_HERE,
         scopes: ["profile", "email"],
       });
@@ -47,20 +49,18 @@ export default class App extends React.Component {
       if (result.type === "success") {
         this.setState({
           signedIn: true,
-          name: result.user.name,
+          full_name: result.user.name,
+          last_name: result.user.familyName,
+          first_name: result.user.givenName,
           photoUrl: result.user.photoUrl,
-          nyit_email: result.user.email,
+          email: result.user.email,
         });
-
-        console.log("\n\nRESULT: ", result, "\n\n");
-
-        // return result.accessToken;
-        // console.log("Successful: ", result)
       } else {
-        console.log(result);
+        console.log("\nLog: \n", result);
       }
     } catch (e) {
-      console.log("Error due to: ", e);
+      console.log("\nError due to: \n", e);
+      // console.log(type(value));
     }
   };
 
@@ -78,21 +78,30 @@ export default class App extends React.Component {
                   return <FeatherIcon name="home" size={size} color={color} />;
                 } else if (route.name === "Account") {
                   iconName = focused ? "account-outline" : "account-outline";
-                  return <MaterialCommunityIconsIcon name={iconName} size={size} color={color} />;
+                  return (
+                    <MaterialCommunityIconsIcon
+                      name={iconName}
+                      size={size}
+                      color={color}
+                    />
+                  );
                 } else if (route.name === "Search") {
                   iconName = focused ? "ios-search" : "ios-search";
                   return <Ionicons name={iconName} size={size} color={color} />;
                 }
               },
             })}
-            tabBarOptions={{
-              activeTintColor: "black",
-              inactiveTintColor: "gray",
-            }}
           >
             <Tab.Screen name="Home" component={HomeScreen} />
             <Tab.Screen name="Search" component={SearchScreen} />
-            <Tab.Screen name="Account" profile_name={this.state.name} profile_mail={this.state.nyit_email} component={AccScreen} />
+            <Tab.Screen name="Account">
+              {() => (
+                <AccScreen
+                  emailer={this.state.email}
+                  fname={this.state.first_name}
+                />
+              )}
+            </Tab.Screen>
           </Tab.Navigator>
         </NavigationContainer>
       );

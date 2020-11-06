@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, useState, useContext } from "react";
 import {
   StyleSheet,
   View,
@@ -17,8 +17,8 @@ function AccScreen(props) {
           <View style={styles.iconRow}>
             <FeatherIcon name="user" style={styles.icon}></FeatherIcon>
             <View style={styles.namesColumn}>
-              <Text style={styles.names}>{props.profile_name}</Text>
-              <Text style={styles.email}>Email: {props.profile_mail}</Text>
+              <Text style={styles.names}>{props.fname}</Text>
+              <Text style={styles.email}>Email: {props.emailer}</Text>
             </View>
           </View>
         </View>

@@ -17,7 +17,7 @@ CSCI 318 - Group Project
     b. Use ```host.exp.exponent``` as the “Package name”(Android) or "Bundle ID"(IOS) in the Google Cloud Console, otherwise you will face ```Error 400: redirect_uri_mismatch```.<br>
     c. Use ```openssl rand -base64 32 | openssl sha1 -c``` to generate openssl key<br>
     d. Place "google-services.json" under android directory
-
+  * Clear the Metro's cache: ```yarn start --reset-cache```
 ## Run the app
   ```
   cd <directory of your project>
