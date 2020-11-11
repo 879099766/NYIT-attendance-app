@@ -6,7 +6,7 @@ import { Ionicons } from "@expo/vector-icons";
 import FeatherIcon from "react-native-vector-icons/Feather";
 import MaterialCommunityIconsIcon from "react-native-vector-icons/MaterialCommunityIcons";
 import * as Google from "expo-google-app-auth";
-// import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import firestore from '@react-native-firebase/firestore';
 
 import HomeScreen from "./components/test_HomeRoot";
 import SearchScreen from "./components/SearchScreen";
@@ -23,6 +23,29 @@ function LoginPage(props) {
 }
 
 const Tab = createBottomTabNavigator();
+
+const config = {
+  // api_key
+  apiKey: "AIzaSyDCYPgLjlChuJbC-FMGyNOYkaao8ULyYWE",
+
+  // storage_bucket ID
+  authDomain: "reactnativefirebase-ec822.appspot.com",
+  
+  // firebase_url
+  databaseURL: "https://reactnativefirebase-ec822.firebaseio.com",
+  
+  // project_id
+  projectId: "reactnativefirebase-ec822",
+  
+  // storage_bucket
+  storageBucket: "reactnativefirebase-ec822.appspot.com",
+
+  // project_number
+  messagingSenderId: "154770876179",
+
+  // mobilesdk_app_id
+  appId: "1:154770876179:android:10714512d67f9f26a8dce6",
+};
 
 export default class App extends React.Component {
   constructor(props) {
@@ -55,6 +78,11 @@ export default class App extends React.Component {
           photoUrl: result.user.photoUrl,
           email: result.user.email,
         });
+
+        firestore.initializeApp(config);
+        const usersCollection = firestore().collection('Users');
+        console.log(usersCollection);
+
       } else {
         console.log("\nLog: \n", result);
       }

@@ -24,7 +24,8 @@ const config = {
   appId: "1:154770876179:android:10714512d67f9f26a8dce6",
 };
 
-firebase.initializeApp(config);
-firebase.firestore();
+firestore.initializeApp(config);
+
+const usersCollection = firestore().collection('Users');
 
 export default firebase;
