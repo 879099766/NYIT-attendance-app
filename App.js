@@ -2,15 +2,18 @@ import * as React from "react";
 import { Button, View, Text, StyleSheet } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { createStackNavigator } from "@react-navigation/stack";
 import { Ionicons } from "@expo/vector-icons";
 import FeatherIcon from "react-native-vector-icons/Feather";
 import MaterialCommunityIconsIcon from "react-native-vector-icons/MaterialCommunityIcons";
 import * as Google from "expo-google-app-auth";
 import firestore from "@react-native-firebase/firestore";
 
-import HomeScreen from "./components/test_HomeRoot";
+import HomeScreen from "./components/home_host";
 import SearchScreen from "./components/SearchScreen";
 import AccScreen from "./components/AccScreen";
+import QRGenerator from "./components/QR_generate";
+import AddLectureScreen from "./components/AddLectureScreen";
 
 function LoginPage(props) {
   // init landing page for the Google Signin
@@ -22,7 +25,45 @@ function LoginPage(props) {
   );
 }
 
+function root_screen() {
+  return (
+    <Tab.Navigator
+      screenOptions={({ route }) => ({
+        tabBarIcon: ({ focused, color, size }) => {
+          let iconName;
+
+          if (route.name === "Home") {
+            iconName = focused ? "home" : "home";
+            return <FeatherIcon name="home" size={size} color={color} />;
+          } else if (route.name === "Account") {
+            iconName = focused ? "account-outline" : "account-outline";
+            return (
+              <MaterialCommunityIconsIcon
+                name={iconName}
+                size={size}
+                color={color}
+              />
+            );
+          } else if (route.name === "Search") {
+            iconName = focused ? "ios-search" : "ios-search";
+            return <Ionicons name={iconName} size={size} color={color} />;
+          }
+        },
+      })}
+    >
+      <Tab.Screen name="Home" component={HomeScreen} />
+      <Tab.Screen name="Search" component={SearchScreen} />
+      <Tab.Screen name="Account">
+        {() => (
+          <AccScreen emailer={this.state.email} fname={this.state.first_name} />
+        )}
+      </Tab.Screen>
+    </Tab.Navigator>
+  );
+}
+
 const Tab = createBottomTabNavigator();
+const Stack = createStackNavigator();
 
 const config = {
   // api_key
@@ -95,41 +136,24 @@ export default class App extends React.Component {
     if (this.state.signedIn) {
       return (
         <NavigationContainer>
-          <Tab.Navigator
-            screenOptions={({ route }) => ({
-              tabBarIcon: ({ focused, color, size }) => {
-                let iconName;
+          <Stack.Navigator>
+            <Stack.Screen name="root_screen" component={root_screen} />
 
-                if (route.name === "Home") {
-                  iconName = focused ? "home" : "home";
-                  return <FeatherIcon name="home" size={size} color={color} />;
-                } else if (route.name === "Account") {
-                  iconName = focused ? "account-outline" : "account-outline";
-                  return (
-                    <MaterialCommunityIconsIcon
-                      name={iconName}
-                      size={size}
-                      color={color}
-                    />
-                  );
-                } else if (route.name === "Search") {
-                  iconName = focused ? "ios-search" : "ios-search";
-                  return <Ionicons name={iconName} size={size} color={color} />;
-                }
-              },
-            })}
-          >
-            <Tab.Screen name="Home" component={HomeScreen} />
-            <Tab.Screen name="Search" component={SearchScreen} />
-            <Tab.Screen name="Account">
-              {() => (
-                <AccScreen
-                  emailer={this.state.email}
-                  fname={this.state.first_name}
-                />
-              )}
-            </Tab.Screen>
-          </Tab.Navigator>
+            <Stack.Screen
+              name="QRGenerator"
+              component={QRGenerator}
+              options={{ title: "Generate QR" }}
+            />
+
+            <Stack.Screen
+              name="AddLectureScreen"
+              component={AddLectureScreen}
+              options={{
+                title: "Add Lecture",
+                tabBarVisible: false,
+              }}
+            />
+          </Stack.Navigator>
         </NavigationContainer>
       );
     } else {

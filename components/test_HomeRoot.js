@@ -21,7 +21,10 @@ export default function Root() {
       <Stack.Screen
         name="AddLectureScreen"
         component={AddLectureScreen}
-        options={{ title: "Add Lecture" }}
+        options={{ 
+          title: "Add Lecture",
+          tabBarVisible: false
+        }}
       />
     </Stack.Navigator>
   );
