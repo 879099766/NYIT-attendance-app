@@ -6,7 +6,7 @@ import { Ionicons } from "@expo/vector-icons";
 import FeatherIcon from "react-native-vector-icons/Feather";
 import MaterialCommunityIconsIcon from "react-native-vector-icons/MaterialCommunityIcons";
 import * as Google from "expo-google-app-auth";
-import firestore from '@react-native-firebase/firestore';
+import firestore from "@react-native-firebase/firestore";
 
 import HomeScreen from "./components/test_HomeRoot";
 import SearchScreen from "./components/SearchScreen";
@@ -30,13 +30,13 @@ const config = {
 
   // storage_bucket ID
   authDomain: "reactnativefirebase-ec822.appspot.com",
-  
+
   // firebase_url
   databaseURL: "https://reactnativefirebase-ec822.firebaseio.com",
-  
+
   // project_id
   projectId: "reactnativefirebase-ec822",
-  
+
   // storage_bucket
   storageBucket: "reactnativefirebase-ec822.appspot.com",
 
@@ -80,9 +80,8 @@ export default class App extends React.Component {
         });
 
         firestore.initializeApp(config);
-        const usersCollection = firestore().collection('Users');
+        const usersCollection = firestore().collection("Users");
         console.log(usersCollection);
-
       } else {
         console.log("\nLog: \n", result);
       }

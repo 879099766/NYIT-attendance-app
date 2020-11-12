@@ -29,7 +29,7 @@
       "favicon": "./assets/favicon.png"
     },
     "android": {
-      "package": "com.nyitattendance.rn"
+      "package": "com.nyitattendanceapp.rn"
     },
     "entryPoint": "node_modules/expo/AppEntry.js"
   }

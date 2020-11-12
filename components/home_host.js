@@ -10,8 +10,10 @@ import MaterialCommunityIconsIcon from "react-native-vector-icons/MaterialCommun
 import { Center } from "@builderx/utils";
 import EntypoIcon from "react-native-vector-icons/Entypo";
 import MaterialIconsIcon from "react-native-vector-icons/MaterialIcons";
+import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
 
-function HomeScreenHost(props) {
+function HomeScreenHost({ navigation }) {
   return (
     // <View style={styles.container}>
     <View style={styles.contain}>
@@ -49,7 +51,10 @@ function HomeScreenHost(props) {
           <View style={styles.grp2}>
             <View style={styles.grp2_shadding}></View>
             <Center>
-              <TouchableOpacity style={styles.grp2_btn}>
+              <TouchableOpacity
+                style={styles.grp2_btn}
+                onPress={() => navigation.navigate("QRGenerator")}
+              >
                 <View style={styles.rect8}>
                   <MaterialCommunityIconsIcon
                     name="qrcode-edit"
@@ -64,7 +69,10 @@ function HomeScreenHost(props) {
           <View style={styles.grp4}>
             <View style={styles.grp4_shadding}></View>
             <Center>
-              <TouchableOpacity style={styles.grp4_btn}>
+              <TouchableOpacity
+                style={styles.grp4_btn}
+                onPress={() => navigation.navigate("AddLectureScreen")}
+              >
                 <View style={styles.rect10}>
                   <MaterialIconsIcon
                     name="add-to-photos"
