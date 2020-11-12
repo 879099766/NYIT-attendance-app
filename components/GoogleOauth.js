@@ -2,6 +2,7 @@ import React from "react";
 import { StyleSheet, Text, View, Image, Button, TouchableOpacity } from "react-native";
 import * as Google from 'expo-google-app-auth';
 import { useNavigation } from '@react-navigation/native';
+import {AccScreen} from "./AccScreen";
 // import * as RootNavigation from './path/to/RootNavigation.js';
 
 export default class GoogleOauth extends React.Component{
@@ -18,22 +19,22 @@ export default class GoogleOauth extends React.Component{
     try {
       const result = await Google.logInAsync({
         // androidClientId: "<YOUR GOOGLE API KEY HERE>",
-        iosClientId: "<YOUR GOOGLE API KEY HERE>",
+        // iosClientId: "<YOUR GOOGLE API KEY HERE>",
         scopes: ['profile', 'email'],
       });
   
       if (result.type === 'success') {
-
+        // verification phase : 1
         this.setState({
           signedIn: true,
           name: result.user.name,
           photoUrl: result.user.photoUrl
-        })
+        }) 
 
-        console.log("\n\nRESULT: ", result, "\n\n")
+        // console.log("\n\nRESULT: ", result, "\n\n")
 
-        // return result.accessToken;
-        // console.log("Successful: ", result)
+      
+    //  return <AccScreen userInfo={result}/>
       } else {
         console.log(result)
       }
@@ -41,11 +42,12 @@ export default class GoogleOauth extends React.Component{
       console.log('Error due to: ', e)
     }
   }
+  
   render(){
   return (
     <View style={styles.container}>
       {this.state.signedIn ? (
-        <LoggedInPage name={this.state.name} photoUrl={this.state.photoUrl} />
+        <LoggedInPage name={this.state.name} photoUrl={this.state.photoUrl}/>
       ) : (
         <LoginPage signIn={this.signIn} />
       )}

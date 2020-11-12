@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, Dimensions, Alert } from 'react-native';
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
-import QR_generate from "../functions/QR_generate";
+import QR_generate from "./QR_generate";
 
 export default function HomeScreen({navigation}) {
   return (
@@ -12,7 +12,7 @@ export default function HomeScreen({navigation}) {
             <Icon name="qrcode-scan" style={styles.icon}></Icon>
             <Text style={styles.scanRqCode1}>Scan QR Code</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.button2}>
+          <TouchableOpacity style={styles.button2} onPress={() => navigation.navigate("QR_generate")}>
             <Icon name="qrcode-edit" style={styles.icon}></Icon>
             <Text style={styles.generateRqCode}>Create QR Code</Text>
           </TouchableOpacity>

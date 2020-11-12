@@ -10,6 +10,7 @@ import SearchScreen from './components/SearchScreen';
 import AccScreen from './components/AccScreen';
 import CameraAccess from './components/CameraAccess.js';
 import GoogleOauth from './components/GoogleOauth';
+import QR_generate from './components/QR_generate';
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -17,15 +18,18 @@ const Stack = createStackNavigator();
 
 export default function App() {
   return (
+
+    // This Navigator display each Components from components folders
     <NavigationContainer>
       <Stack.Navigator initialRouteName="GoogleOauth">
       <Stack.Screen name="GoogleOauth" component={GoogleOauth} />
       <Stack.Screen name="Home" component={Home} />
       <Stack.Screen name="CameraAccess" component={CameraAccess} />
+      <Stack.Screen name="QR_generate" component={QR_generate} />
       </Stack.Navigator>
-
     </NavigationContainer>
-  );
+  )
+};
 
   function Home(){
     return(
@@ -52,7 +56,7 @@ export default function App() {
           inactiveTintColor: 'gray',
         }}
       >
-      
+        {/* This is for bottom navigations */}
         <Tab.Screen name="Home" component={HomeScreen} />
         <Tab.Screen name="Search" component={SearchScreen} />
         <Tab.Screen name="Account" component={AccScreen} />
@@ -60,5 +64,3 @@ export default function App() {
 
     )
   }
-
-}

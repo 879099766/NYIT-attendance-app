@@ -3,7 +3,8 @@ import { StyleSheet, View, Text, Dimensions } from "react-native";
 import EntypoIcon from "react-native-vector-icons/Entypo";
 import FontAwesomeIcon from "react-native-vector-icons/FontAwesome";
 
-export default function MeScreen() {
+export default class AccScreen extends React.Component {  
+  render(){
   return (
     <View style={styles.container}>
     <View style={styles.group}>
@@ -11,7 +12,7 @@ export default function MeScreen() {
         <View style={styles.iconRow}>
           <EntypoIcon name="user" style={styles.icon}></EntypoIcon>
           <View style={styles.nameColumn}>
-            <Text style={styles.name}>Name</Text>
+            <Text style={styles.name}>{}</Text>
             <Text style={styles.name2}>Email: example@gmail.com</Text>
           </View>
         </View>
@@ -30,6 +31,7 @@ export default function MeScreen() {
     </View>
   </View>
   );
+}
 }
 
 const styles = StyleSheet.create({

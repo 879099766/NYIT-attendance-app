@@ -1,50 +1,57 @@
-import React, { useState, useEffect } from 'react';
-import { Text, View, TouchableOpacity } from 'react-native';
-import { Camera } from 'expo-camera';
+import * as React from 'react';
+import { Text, View, StyleSheet, Button } from 'react-native';
+import * as Permissions from 'expo-permissions';
 
-export default function CameraAcess() {
-  const [hasPermission, setHasPermission] = useState(null);
-  const [type, setType] = useState(Camera.Constants.Type.back);
+import { BarCodeScanner } from 'expo-barcode-scanner';
 
-  useEffect(() => {
-    (async () => {
-      const { status } = await Camera.requestPermissionsAsync();
-      setHasPermission(status === 'granted');
-    })();
-  }, []);
+export default class BarcodeScannerExample extends React.Component {
+  state = {
+    hasCameraPermission: null,
+    scanned: false,
+  };
 
-  if (hasPermission === null) {
-    return <View />;
+  async componentDidMount() {
+    this.getPermissionsAsync();
   }
-  if (hasPermission === false) {
-    return <Text>No access to camera</Text>;
+
+  getPermissionsAsync = async () => {
+    const { status } = await Permissions.askAsync(Permissions.CAMERA);
+    this.setState({ hasCameraPermission: status === 'granted' });
   }
-  return (
-    <View style={{ flex: 1 }}>
-      <Camera style={{ flex: 1 }} type={type}>
-        <View
-          style={{
-            flex: 1,
-            backgroundColor: 'transparent',
-            flexDirection: 'row',
-          }}>
-          <TouchableOpacity
-            style={{
-              flex: 0.1,
-              alignSelf: 'flex-end',
-              alignItems: 'center',
-            }}
-            onPress={() => {
-              setType(
-                type === Camera.Constants.Type.back
-                  ? Camera.Constants.Type.front
-                  : Camera.Constants.Type.back
-              );
-            }}>
-            <Text style={{ fontSize: 18, marginBottom: 10, color: 'white' }}> Flip </Text>
-          </TouchableOpacity>
-        </View>
-      </Camera>
-    </View>
-  );
+
+  render() {
+    const { hasCameraPermission, scanned } = this.state;
+
+    if (hasCameraPermission === null) {
+      return <Text>Requesting for camera permission</Text>;
+    }
+    if (hasCameraPermission === false) {
+      return <Text>No access to camera</Text>;
+    }
+    return (
+      <View
+        style={{
+          flex: 1,
+          flexDirection: 'column',
+          justifyContent: 'flex-end',
+        }}>
+        <BarCodeScanner
+          onBarCodeScanned={scanned ? undefined : this.handleBarCodeScanned}
+          style={StyleSheet.absoluteFillObject}
+        />
+
+        {scanned && (
+          <Button
+            title={'Tap to Scan Again'}
+            onPress={() => this.setState({ scanned: false })}
+          />
+        )}
+      </View>
+    );
+  }
+
+  handleBarCodeScanned = ({ type, data }) => {
+    this.setState({ scanned: true });
+    alert(`Bar code with type ${type} and data ${data} has been scanned!`);
+  };
 }
