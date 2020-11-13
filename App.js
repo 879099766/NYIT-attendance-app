@@ -7,12 +7,13 @@ import { Ionicons } from "@expo/vector-icons";
 import FeatherIcon from "react-native-vector-icons/Feather";
 import MaterialCommunityIconsIcon from "react-native-vector-icons/MaterialCommunityIcons";
 import * as Google from "expo-google-app-auth";
-import firestore from "@react-native-firebase/firestore";
+// import firestore from "@react-native-firebase/firestore";
 
 import HomeScreen from "./components/home_host";
 import SearchScreen from "./components/SearchScreen";
 import AccScreen from "./components/AccScreen";
-import QRGenerator from "./components/QR_generate";
+// import QRGenerator from "./components/QR_generate";
+import QRGenerator2 from "./components/GenerateQR_func";
 import AddLectureScreen from "./components/AddLectureScreen";
 
 function LoginPage(props) {
@@ -25,7 +26,7 @@ function LoginPage(props) {
   );
 }
 
-function root_screen() {
+function root_screen(props) {
   return (
     <Tab.Navigator
       screenOptions={({ route }) => ({
@@ -55,7 +56,7 @@ function root_screen() {
       <Tab.Screen name="Search" component={SearchScreen} />
       <Tab.Screen name="Account">
         {() => (
-          <AccScreen emailer={this.state.email} fname={this.state.first_name} />
+          <AccScreen emailer={this.email} fname={this.first_name} />
         )}
       </Tab.Screen>
     </Tab.Navigator>
@@ -120,11 +121,11 @@ export default class App extends React.Component {
           email: result.user.email,
         });
 
-        firestore.initializeApp(config);
-        const usersCollection = firestore().collection("Users");
-        console.log(usersCollection);
+        // firestore.initializeApp(config);
+        // const usersCollection = firestore().collection("Users");
+        // console.log(usersCollection);
       } else {
-        console.log("\nLog: \n", result);
+        console.log("\nLog failed due to: \n", result);
       }
     } catch (e) {
       console.log("\nError due to: \n", e);
@@ -138,13 +139,11 @@ export default class App extends React.Component {
         <NavigationContainer>
           <Stack.Navigator>
             <Stack.Screen name="root_screen" component={root_screen} />
-
             <Stack.Screen
-              name="QRGenerator"
-              component={QRGenerator}
+              name="QRGenerator2"
+              component={QRGenerator2}
               options={{ title: "Generate QR" }}
             />
-
             <Stack.Screen
               name="AddLectureScreen"
               component={AddLectureScreen}

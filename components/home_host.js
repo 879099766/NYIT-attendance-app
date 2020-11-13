@@ -53,7 +53,7 @@ function HomeScreenHost({ navigation }) {
             <Center>
               <TouchableOpacity
                 style={styles.grp2_btn}
-                onPress={() => navigation.navigate("QRGenerator")}
+                onPress={() => navigation.navigate("QRGenerator2")}
               >
                 <View style={styles.rect8}>
                   <MaterialCommunityIconsIcon
