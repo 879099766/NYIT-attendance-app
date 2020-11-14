@@ -97,7 +97,12 @@ export default class App extends React.Component {
               name="HomeRootScreen"
               options={{ title: "Home Screen" }}
             >
-              {props => <HomeRootScreen {...props} userInfo={this.state.full_name, this.state.email} />}
+              {(props) => (
+                <HomeRootScreen
+                  {...props}
+                  userInfo={(this.state.full_name, this.state.email)}
+                />
+              )}
               {/* {() => (
                 <
                   emailer={this.state.email}
