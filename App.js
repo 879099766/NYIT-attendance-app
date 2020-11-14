@@ -26,43 +26,6 @@ function LoginPage(props) {
   );
 }
 
-function root_screen(props) {
-  return (
-    <Tab.Navigator
-      screenOptions={({ route }) => ({
-        tabBarIcon: ({ focused, color, size }) => {
-          let iconName;
-
-          if (route.name === "Home") {
-            iconName = focused ? "home" : "home";
-            return <FeatherIcon name="home" size={size} color={color} />;
-          } else if (route.name === "Account") {
-            iconName = focused ? "account-outline" : "account-outline";
-            return (
-              <MaterialCommunityIconsIcon
-                name={iconName}
-                size={size}
-                color={color}
-              />
-            );
-          } else if (route.name === "Search") {
-            iconName = focused ? "ios-search" : "ios-search";
-            return <Ionicons name={iconName} size={size} color={color} />;
-          }
-        },
-      })}
-    >
-      <Tab.Screen name="Home" component={HomeScreen} />
-      <Tab.Screen name="Search" component={SearchScreen} />
-      <Tab.Screen name="Account">
-        {() => (
-          <AccScreen emailer={this.email} fname={this.first_name} />
-        )}
-      </Tab.Screen>
-    </Tab.Navigator>
-  );
-}
-
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
 
