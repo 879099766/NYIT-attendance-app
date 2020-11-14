@@ -10,10 +10,9 @@ import MaterialCommunityIconsIcon from "react-native-vector-icons/MaterialCommun
 import { Center } from "@builderx/utils";
 import EntypoIcon from "react-native-vector-icons/Entypo";
 import MaterialIconsIcon from "react-native-vector-icons/MaterialIcons";
-import { NavigationContainer } from "@react-navigation/native";
-import { createStackNavigator } from "@react-navigation/stack";
 
 function HomeScreenHost({ navigation }) {
+  navigation.setOptions({ title: 'Home Screen' })
   return (
     // <View style={styles.container}>
     <View style={styles.contain}>
@@ -53,7 +52,7 @@ function HomeScreenHost({ navigation }) {
             <Center>
               <TouchableOpacity
                 style={styles.grp2_btn}
-                onPress={() => navigation.navigate("QRGenerator2")}
+                onPress={() => navigation.navigate("QRGenerator")}
               >
                 <View style={styles.rect8}>
                   <MaterialCommunityIconsIcon

@@ -1,7 +1,8 @@
 import * as React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
-export default function searchScreen(){
+export default function searchScreen({navigation}){
+  navigation.setOptions({ title: 'Search Screen' })
   return (
     <View style={styles.buttonBar_itme}>
         <Text>This is search panel!</Text>

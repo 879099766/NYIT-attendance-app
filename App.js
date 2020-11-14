@@ -1,19 +1,12 @@
 import * as React from "react";
 import { Button, View, Text, StyleSheet } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createStackNavigator } from "@react-navigation/stack";
-import { Ionicons } from "@expo/vector-icons";
-import FeatherIcon from "react-native-vector-icons/Feather";
-import MaterialCommunityIconsIcon from "react-native-vector-icons/MaterialCommunityIcons";
 import * as Google from "expo-google-app-auth";
 // import firestore from "@react-native-firebase/firestore";
 
-import HomeScreen from "./components/home_host";
-import SearchScreen from "./components/SearchScreen";
-import AccScreen from "./components/AccScreen";
-// import QRGenerator from "./components/QR_generate";
-import QRGenerator2 from "./components/GenerateQR_func";
+import HomeRootScreen from "./components/HomeRootScreen";
+import QRGenerator from "./components/GenerateQR_func";
 import AddLectureScreen from "./components/AddLectureScreen";
 
 function LoginPage(props) {
@@ -26,7 +19,6 @@ function LoginPage(props) {
   );
 }
 
-const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
 
 const config = {
@@ -101,10 +93,21 @@ export default class App extends React.Component {
       return (
         <NavigationContainer>
           <Stack.Navigator>
-            <Stack.Screen name="root_screen" component={root_screen} />
             <Stack.Screen
-              name="QRGenerator2"
-              component={QRGenerator2}
+              name="HomeRootScreen"
+              options={{ title: "Home Screen" }}
+            >
+              {props => <HomeRootScreen {...props} userInfo={this.state.full_name, this.state.email} />}
+              {/* {() => (
+                <
+                  emailer={this.state.email}
+                  fname={this.state.first_name}
+                />
+              )} */}
+            </Stack.Screen>
+            <Stack.Screen
+              name="QRGenerator"
+              component={QRGenerator}
               options={{ title: "Generate QR" }}
             />
             <Stack.Screen
@@ -112,7 +115,6 @@ export default class App extends React.Component {
               component={AddLectureScreen}
               options={{
                 title: "Add Lecture",
-                tabBarVisible: false,
               }}
             />
           </Stack.Navigator>

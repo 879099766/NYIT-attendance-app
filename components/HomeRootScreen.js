@@ -1,12 +1,15 @@
 import * as React from "react";
 import { Button, View, Text } from "react-native";
-import { createStackNavigator } from "@react-navigation/stack";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { Ionicons } from "@expo/vector-icons";
+import FeatherIcon from "react-native-vector-icons/Feather";
+import MaterialCommunityIconsIcon from "react-native-vector-icons/MaterialCommunityIcons";
 
-import HomeScreen from "./components/home_host";
-import SearchScreen from "./components/SearchScreen";
-import AccScreen from "./components/AccScreen";
+import HomeScreen from "./HomeHostScreen";
+import SearchScreen from "./SearchScreen";
+import AccScreen from "./AccScreen";
 
-const Stack = createStackNavigator();
+const Tab = createBottomTabNavigator();
 
 export default function root_screen(props) {
   return (
@@ -34,12 +37,18 @@ export default function root_screen(props) {
         },
       })}
     >
-      <Tab.Screen name="Home" component={HomeScreen} />
-      <Tab.Screen name="Search" component={SearchScreen} />
-      <Tab.Screen name="Account">
-        {() => (
-          <AccScreen emailer={state.email} fname={this.state.first_name} />
-        )}
+      <Tab.Screen
+        name="Home"
+        component={HomeScreen}
+        options={{ title: "Home Screen" }}
+      />
+      <Tab.Screen
+        name="Search"
+        component={SearchScreen}
+        options={{ title: "Search Screen" }}
+      />
+      <Tab.Screen name="Account" options={{ title: "Account Screen" }}>
+        {() => <AccScreen emailer={props.email} fname={props.full_name} />}
       </Tab.Screen>
     </Tab.Navigator>
   );

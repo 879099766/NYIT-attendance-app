@@ -1,14 +1,9 @@
 import React, { Component, useState, useContext } from "react";
-import {
-  StyleSheet,
-  View,
-  StatusBar,
-  Text,
-  TouchableOpacity,
-} from "react-native";
+import { StyleSheet, View, Text, TouchableOpacity } from "react-native";
 import FeatherIcon from "react-native-vector-icons/Feather";
 
 function AccScreen(props) {
+  // navigation.setOptions({ title: 'Account Screen' })
   return (
     <View style={styles.container}>
       {/* <StatusBar hidden /> */}
