@@ -12,7 +12,7 @@ import EntypoIcon from "react-native-vector-icons/Entypo";
 import MaterialIconsIcon from "react-native-vector-icons/MaterialIcons";
 
 function HomeScreenHost({ navigation }) {
-  navigation.setOptions({ title: 'Home Screen' })
+  // navigation.setOptions({ title: 'Home Screen' })
   return (
     // <View style={styles.container}>
     <View style={styles.contain}>

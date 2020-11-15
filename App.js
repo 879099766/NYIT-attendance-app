@@ -1,13 +1,15 @@
 import * as React from "react";
 import { Button, View, Text, StyleSheet } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
-import { createStackNavigator } from "@react-navigation/stack";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import * as Google from "expo-google-app-auth";
-// import firestore from "@react-native-firebase/firestore";
+import { Ionicons } from "@expo/vector-icons";
+import FeatherIcon from "react-native-vector-icons/Feather";
+import MaterialCommunityIconsIcon from "react-native-vector-icons/MaterialCommunityIcons";
 
-import HomeRootScreen from "./components/HomeRootScreen";
-import QRGenerator from "./components/GenerateQR_func";
-import AddLectureScreen from "./components/AddLectureScreen";
+import RootScreen from "./components/HomeRootScreen";
+import SearchScreen from "./components/SearchScreen";
+import AccScreen from "./components/AccScreen";
 
 function LoginPage(props) {
   // init landing page for the Google Signin
@@ -19,7 +21,7 @@ function LoginPage(props) {
   );
 }
 
-const Stack = createStackNavigator();
+const Tab = createBottomTabNavigator();
 
 const config = {
   // api_key
@@ -92,37 +94,49 @@ export default class App extends React.Component {
     if (this.state.signedIn) {
       return (
         <NavigationContainer>
-          <Stack.Navigator>
-            <Stack.Screen
-              name="HomeRootScreen"
+          <Tab.Navigator
+            screenOptions={({ route }) => ({
+              tabBarIcon: ({ focused, color, size }) => {
+                let iconName;
+
+                if (route.name === "Home") {
+                  iconName = focused ? "home" : "home";
+                  return <FeatherIcon name="home" size={size} color={color} />;
+                } else if (route.name === "Account") {
+                  iconName = focused ? "account-outline" : "account-outline";
+                  return (
+                    <MaterialCommunityIconsIcon
+                      name={iconName}
+                      size={size}
+                      color={color}
+                    />
+                  );
+                } else if (route.name === "Search") {
+                  iconName = focused ? "ios-search" : "ios-search";
+                  return <Ionicons name={iconName} size={size} color={color} />;
+                }
+              },
+            })}
+          >
+            <Tab.Screen
+              name="Home"
+              component={RootScreen}
               options={{ title: "Home Screen" }}
-            >
-              {(props) => (
-                <HomeRootScreen
-                  {...props}
-                  userInfo={(this.state.full_name, this.state.email)}
+            />
+            <Tab.Screen
+              name="Search"
+              component={SearchScreen}
+              options={{ title: "Search Screen" }}
+            />
+            <Tab.Screen name="Account" options={{ title: "Account Screen" }}>
+              {() => (
+                <AccScreen
+                  emailer={this.state.email}
+                  fname={this.state.full_name}
                 />
               )}
-              {/* {() => (
-                <
-                  emailer={this.state.email}
-                  fname={this.state.first_name}
-                />
-              )} */}
-            </Stack.Screen>
-            <Stack.Screen
-              name="QRGenerator"
-              component={QRGenerator}
-              options={{ title: "Generate QR" }}
-            />
-            <Stack.Screen
-              name="AddLectureScreen"
-              component={AddLectureScreen}
-              options={{
-                title: "Add Lecture",
-              }}
-            />
-          </Stack.Navigator>
+            </Tab.Screen>
+          </Tab.Navigator>
         </NavigationContainer>
       );
     } else {
