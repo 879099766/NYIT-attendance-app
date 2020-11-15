@@ -1,5 +1,5 @@
 import * as firebase from 'firebase';
-import firestore from 'firebase/firestore';
+import firestore from 'firebase/firestore'
 
 const config = {
   // api_key
@@ -24,8 +24,8 @@ const config = {
   appId: "1:154770876179:android:10714512d67f9f26a8dce6",
 };
 
-firestore.initializeApp(config);
-
-const usersCollection = firestore().collection('Users');
+firebase.initializeApp(config);
+firebase.firestore();
+// const usersCollection = firestore().collection('Users');
 
 export default firebase;

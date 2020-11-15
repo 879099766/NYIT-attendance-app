@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { Text, StyleSheet, View, Button, TouchableOpacity } from "react-native";
 import { QRCode } from "react-native-custom-qr-codes";
 import CountDown from "react-native-countdown-component";
-import { NavigationContainer } from "@react-navigation/native";
 
 export default function GenerateQR_func() {
   const [QR, setQRState] = useState(

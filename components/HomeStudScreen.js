@@ -9,9 +9,8 @@ import {
 import MaterialCommunityIconsIcon from "react-native-vector-icons/MaterialCommunityIcons";
 import { Center } from "@builderx/utils";
 import EntypoIcon from "react-native-vector-icons/Entypo";
-import MaterialIconsIcon from "react-native-vector-icons/MaterialIcons";
 
-function HomeScreenHost({ navigation }) {
+function HomeStudScreen({ navigation }) {
   // navigation.setOptions({ title: 'Home Screen' })
   return (
     // <View style={styles.container}>
@@ -22,22 +21,19 @@ function HomeScreenHost({ navigation }) {
           <View style={styles.grp1}>
             <View style={styles.grp1_shadding}></View>
             <Center>
-              <TouchableOpacity 
-                style={styles.grp1_btn}
-                onPress={() => navigation.navigate("QRGenerator")}
-              >
+              <TouchableOpacity style={styles.grp1_btn}>
                 <View style={styles.rect6}>
-                <MaterialCommunityIconsIcon
-                    name="qrcode-edit"
-                    style={styles.icon2}
+                  <MaterialCommunityIconsIcon
+                    name="qrcode-scan"
+                    style={styles.icon}
                   ></MaterialCommunityIconsIcon>
-                  <Text style={styles.generateQrCode}>Generate QR Code</Text>
+                  <Text style={styles.scanQrCode}>Scan QR Code</Text>
                 </View>
               </TouchableOpacity>
             </Center>
           </View>
 
-          <View style={styles.grp3}>
+          {/* <View style={styles.grp3}>
             <View style={styles.grp3_shadding}></View>
             <Center>
               <TouchableOpacity style={styles.grp3_btn}>
@@ -47,7 +43,7 @@ function HomeScreenHost({ navigation }) {
                 </View>
               </TouchableOpacity>
             </Center>
-          </View>
+          </View> */}
 
         </View>
 
@@ -58,14 +54,11 @@ function HomeScreenHost({ navigation }) {
             <Center>
               <TouchableOpacity
                 style={styles.grp2_btn}
-                onPress={() => navigation.navigate("AddLectureScreen")}
+                // onPress={() => navigation.navigate("QRGenerator")}
               >
                 <View style={styles.rect8}>
-                <MaterialIconsIcon
-                    name="add-to-photos"
-                    style={styles.icon4}
-                  ></MaterialIconsIcon>
-                  <Text style={styles.addLecture}>Add Lecture</Text>
+                <EntypoIcon name="list" style={styles.icon3}></EntypoIcon>
+                  <Text style={styles.viewList}>View List</Text>
                 </View>
               </TouchableOpacity>
             </Center>
@@ -313,4 +306,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default HomeScreenHost;
+export default HomeStudScreen;

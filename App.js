@@ -23,29 +23,6 @@ function LoginPage(props) {
 
 const Tab = createBottomTabNavigator();
 
-const config = {
-  // api_key
-  apiKey: "AIzaSyDCYPgLjlChuJbC-FMGyNOYkaao8ULyYWE",
-
-  // storage_bucket ID
-  authDomain: "reactnativefirebase-ec822.appspot.com",
-
-  // firebase_url
-  databaseURL: "https://reactnativefirebase-ec822.firebaseio.com",
-
-  // project_id
-  projectId: "reactnativefirebase-ec822",
-
-  // storage_bucket
-  storageBucket: "reactnativefirebase-ec822.appspot.com",
-
-  // project_number
-  messagingSenderId: "154770876179",
-
-  // mobilesdk_app_id
-  appId: "1:154770876179:android:10714512d67f9f26a8dce6",
-};
-
 export default class App extends React.Component {
   constructor(props) {
     super(props);
@@ -78,9 +55,6 @@ export default class App extends React.Component {
           email: result.user.email,
         });
 
-        // firestore.initializeApp(config);
-        // const usersCollection = firestore().collection("Users");
-        // console.log(usersCollection);
       } else {
         console.log("\nLog failed due to: \n", result);
       }
@@ -120,9 +94,14 @@ export default class App extends React.Component {
           >
             <Tab.Screen
               name="Home"
-              component={RootScreen}
               options={{ title: "Home Screen" }}
-            />
+            >
+              {() => (
+                <RootScreen
+                  email={this.state.email}
+                />
+              )}
+            </Tab.Screen>
             <Tab.Screen
               name="Search"
               component={SearchScreen}
