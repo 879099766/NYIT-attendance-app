@@ -4,27 +4,30 @@ import { QRCode } from "react-native-custom-qr-codes";
 import CountDown from "react-native-countdown-component";
 
 export default function GenerateQR_func({navigation}) {
-  const [state, setState] = useState( { 
-    QR : <QRCode style={styles.buttonBsar_itme} content={ Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)}/>,
+
+  // state Hook for ID and random string
+  const [state, setState] = useState({ 
     ID : "0",
+    newString : Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15),
     }
     );
 
+  // When time hit 0, this funcdtion will be triggered
   const generateQR = () => {
       setState({
-      QR : <QRCode style={styles.buttonBsar_itme} content={Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)}/>,
       ID : (parseInt(state.ID) + 1).toString(),
+      newString : Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15), 
        });
+       if (state.ID == 2) {
+         navigation.navigate('Home');
       }
 
-  const navigatior = () => navigation.naviator('Home')
-
-
+    }
+  
   return (
     <View style={styles.buttonBar_itme}>
-      {state.QR}
-      {console.log(state.ID)}
-      {/* {state.ID == 5 && () => navigation.naviator('Home')} */}
+      {/* // QRCode container can accesss randome string from the hook */}
+      <QRCode style={styles.buttonBsar_itme} content={state.newString}/>
       <CountDown
         style={styles.botton_timer}
         size={30}

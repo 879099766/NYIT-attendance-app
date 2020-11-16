@@ -19,7 +19,7 @@ export default class GoogleOauth extends React.Component{
     try {
       const result = await Google.logInAsync({
         // androidClientId: "<YOUR GOOGLE API KEY HERE>",
-        // iosClientId: "<YOUR GOOGLE API KEY HERE>",
+        // iosClientId: "<YOUR IOS API KEY HERE>",
         scopes: ['profile', 'email'],
       });
   
