@@ -1,15 +1,21 @@
 import * as React from "react";
 import { Button, View, Text, StyleSheet } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import * as Google from "expo-google-app-auth";
 import { Ionicons } from "@expo/vector-icons";
 import FeatherIcon from "react-native-vector-icons/Feather";
 import MaterialCommunityIconsIcon from "react-native-vector-icons/MaterialCommunityIcons";
 
-import RootScreen from "./components/HomeRootScreen";
+// import RootScreen from "./components/HomeRootScreen";
 import SearchScreen from "./components/SearchScreen";
 import AccScreen from "./components/AccScreen";
+
+import HomeHostScreen from "./components/HomeHostScreen";
+import StudScreen from "./components/HomeStudScreen";
+import QRGenerator from "./components/GenerateQR_func";
+import AddLectureScreen from "./components/AddLectureScreen";
 
 function LoginPage(props) {
   // init landing page for the Google Signin
@@ -21,7 +27,49 @@ function LoginPage(props) {
   );
 }
 
+const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
+
+function TabScreen(props) {
+  return (
+    <Tab.Navigator
+      screenOptions={({ route }) => ({
+        tabBarIcon: ({ focused, color, size }) => {
+          let iconName;
+
+          if (route.name === "Home") {
+            iconName = focused ? "home" : "home";
+            return <FeatherIcon name="home" size={size} color={color} />;
+          } else if (route.name === "Account") {
+            iconName = focused ? "account-outline" : "account-outline";
+            return (
+              <MaterialCommunityIconsIcon
+                name={iconName}
+                size={size}
+                color={color}
+              />
+            );
+          } else if (route.name === "Search") {
+            iconName = focused ? "ios-search" : "ios-search";
+            return <Ionicons name={iconName} size={size} color={color} />;
+          }
+        },
+      })}
+    >
+      <Tab.Screen name="Home" options={{ title: "Home Screen" }}>
+        {() => <HomeHostScreen email={props.email} />}
+      </Tab.Screen>
+      <Tab.Screen
+        name="Search"
+        component={SearchScreen}
+        options={{ title: "Search Screen" }}
+      />
+      <Tab.Screen name="Account" options={{ title: "Account Screen" }}>
+        {() => <AccScreen emailer={props.usr_email} fname={props.usr_fname} />}
+      </Tab.Screen>
+    </Tab.Navigator>
+  );
+}
 
 export default class App extends React.Component {
   constructor(props) {
@@ -54,7 +102,6 @@ export default class App extends React.Component {
           photoUrl: result.user.photoUrl,
           email: result.user.email,
         });
-
       } else {
         console.log("\nLog failed due to: \n", result);
       }
@@ -68,54 +115,26 @@ export default class App extends React.Component {
     if (this.state.signedIn) {
       return (
         <NavigationContainer>
-          <Tab.Navigator
-            screenOptions={({ route }) => ({
-              tabBarIcon: ({ focused, color, size }) => {
-                let iconName;
-
-                if (route.name === "Home") {
-                  iconName = focused ? "home" : "home";
-                  return <FeatherIcon name="home" size={size} color={color} />;
-                } else if (route.name === "Account") {
-                  iconName = focused ? "account-outline" : "account-outline";
-                  return (
-                    <MaterialCommunityIconsIcon
-                      name={iconName}
-                      size={size}
-                      color={color}
-                    />
-                  );
-                } else if (route.name === "Search") {
-                  iconName = focused ? "ios-search" : "ios-search";
-                  return <Ionicons name={iconName} size={size} color={color} />;
-                }
-              },
-            })}
-          >
-            <Tab.Screen
-              name="Home"
-              options={{ title: "Home Screen" }}
-            >
+          <Stack.Navigator>
+            <Stack.Screen name="TabScreen" options={{ title: "Home Screen" }}>
               {() => (
-                <RootScreen
-                  email={this.state.email}
+                <TabScreen
+                  usr_email={this.state.email}
+                  usr_fname={this.state.full_name}
                 />
               )}
-            </Tab.Screen>
-            <Tab.Screen
-              name="Search"
-              component={SearchScreen}
-              options={{ title: "Search Screen" }}
+            </Stack.Screen>
+            <Stack.Screen
+              name="QRGenerator"
+              component={QRGenerator}
+              options={{ title: "Generate QR" }}
             />
-            <Tab.Screen name="Account" options={{ title: "Account Screen" }}>
-              {() => (
-                <AccScreen
-                  emailer={this.state.email}
-                  fname={this.state.full_name}
-                />
-              )}
-            </Tab.Screen>
-          </Tab.Navigator>
+            <Stack.Screen
+              name="AddLectureScreen"
+              component={AddLectureScreen}
+              options={{ title: "Add Lecture" }}
+            />
+          </Stack.Navigator>
         </NavigationContainer>
       );
     } else {

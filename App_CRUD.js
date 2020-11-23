@@ -2,9 +2,9 @@ import * as React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
-import AddUserScreen from './components/AddUserScreen';
-import UserScreen from './components/UserScreen';
-import UserDetailScreen from './components/UserDetailScreen';
+import AddUserScreen from './experiments/AddUserScreen';
+import UserScreen from './experiments/UserScreen';
+import UserDetailScreen from './experiments/UserDetailScreen';
 
 const Stack = createStackNavigator();
 

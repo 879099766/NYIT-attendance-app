@@ -10,24 +10,23 @@ import MaterialCommunityIconsIcon from "react-native-vector-icons/MaterialCommun
 import { Center } from "@builderx/utils";
 import EntypoIcon from "react-native-vector-icons/Entypo";
 import MaterialIconsIcon from "react-native-vector-icons/MaterialIcons";
+import { useNavigation } from '@react-navigation/native';
 
-function HomeScreenHost({ navigation }) {
-  // navigation.setOptions({ title: 'Home Screen' })
+function HomeScreenHost() {
+  const navigation = useNavigation();
   return (
-    // <View style={styles.container}>
     <View style={styles.contain}>
       <View style={styles.center_container}>
         <View style={styles.left_grp}>
-          
           <View style={styles.grp1}>
             <View style={styles.grp1_shadding}></View>
             <Center>
-              <TouchableOpacity 
+              <TouchableOpacity
                 style={styles.grp1_btn}
                 onPress={() => navigation.navigate("QRGenerator")}
               >
                 <View style={styles.rect6}>
-                <MaterialCommunityIconsIcon
+                  <MaterialCommunityIconsIcon
                     name="qrcode-edit"
                     style={styles.icon2}
                   ></MaterialCommunityIconsIcon>
@@ -48,11 +47,9 @@ function HomeScreenHost({ navigation }) {
               </TouchableOpacity>
             </Center>
           </View>
-
         </View>
 
         <View style={styles.right_grp}>
-          
           <View style={styles.grp2}>
             <View style={styles.grp2_shadding}></View>
             <Center>
@@ -61,24 +58,6 @@ function HomeScreenHost({ navigation }) {
                 onPress={() => navigation.navigate("AddLectureScreen")}
               >
                 <View style={styles.rect8}>
-                <MaterialIconsIcon
-                    name="add-to-photos"
-                    style={styles.icon4}
-                  ></MaterialIconsIcon>
-                  <Text style={styles.addLecture}>Add Lecture</Text>
-                </View>
-              </TouchableOpacity>
-            </Center>
-          </View>
-
-          {/* <View style={styles.grp4}>
-            <View style={styles.grp4_shadding}></View>
-            <Center>
-              <TouchableOpacity
-                style={styles.grp4_btn}
-                onPress={() => navigation.navigate("AddLectureScreen")}
-              >
-                <View style={styles.rect10}>
                   <MaterialIconsIcon
                     name="add-to-photos"
                     style={styles.icon4}
@@ -87,8 +66,7 @@ function HomeScreenHost({ navigation }) {
                 </View>
               </TouchableOpacity>
             </Center>
-          </View> */}
-
+          </View>
         </View>
       </View>
     </View>

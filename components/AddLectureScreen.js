@@ -9,11 +9,14 @@ import {
   TouchableOpacity,
 } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
+import { useNavigation } from '@react-navigation/native';
 
 function AddLecture(props) {
   // switch btn states
   const [isEnabled, setIsEnabled] = useState(false);
   const toggleSwitch = () => setIsEnabled((previousState) => !previousState);
+  const navigation = useNavigation();
+  
   return (
     <KeyboardAwareScrollView
       enableOnAndroid
