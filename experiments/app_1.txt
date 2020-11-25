@@ -91,8 +91,7 @@ export default class App extends Component{
   }
 
   componentDidMount(){
-    // this.unsubscribe = this.firestoreRef.onSnapshot(this.getDoc);
-    this.unsubscribe = this.firestoreRef.onSnapshot(this.getDoc)
+    this.unsubscribe = this.firestoreRef.onSnapshot(this.getDoc);
   };
 
   componentWillUnmount(){
@@ -100,12 +99,11 @@ export default class App extends Component{
   };
 
   getDoc = (querySnapshot) => {
-    // querySnapshot.get((res) => {
-    //   const email = res.data();
-    //   this.state.profArr.push(email);
-    // });
-    const email = querySnapshot.data();
-    this.state.profArr.push(email);
+    console.log(querySnapshot);
+    querySnapshot.forEach((res) => {
+      const email = res.data();
+      console.log(email);
+    });
   };
 
   signIn = async () => {
@@ -139,7 +137,6 @@ export default class App extends Component{
 
   render() {
     if (this.state.usr_obj.signedIn) {
-      console.log(this.state.profArr);
       return (
         <NavigationContainer>
           <Stack.Navigator>

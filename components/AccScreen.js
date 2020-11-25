@@ -2,7 +2,7 @@ import React, { Component, useState, useContext } from "react";
 import { StyleSheet, View, Text, TouchableOpacity } from "react-native";
 import FeatherIcon from "react-native-vector-icons/Feather";
 
-function AccScreen(props) {
+function AccScreen({usr_obj}) {
   // navigation.setOptions({ title: 'Account Screen' })
   return (
     <View style={styles.container}>
@@ -12,8 +12,8 @@ function AccScreen(props) {
           <View style={styles.iconRow}>
             <FeatherIcon name="user" style={styles.icon}></FeatherIcon>
             <View style={styles.namesColumn}>
-              <Text style={styles.names}>{props.fname}</Text>
-              <Text style={styles.email}>Email: {props.emailer}</Text>
+              <Text style={styles.names}>{usr_obj.full_name}</Text>
+              <Text style={styles.email}>Email: {usr_obj.email}</Text>
             </View>
           </View>
         </View>
