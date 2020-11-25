@@ -10,14 +10,13 @@ import MaterialCommunityIconsIcon from "react-native-vector-icons/MaterialCommun
 import { Center } from "@builderx/utils";
 import EntypoIcon from "react-native-vector-icons/Entypo";
 
-function HomeStudScreen({ navigation }) {
+function HomeStudScreen() {
   // navigation.setOptions({ title: 'Home Screen' })
   return (
     // <View style={styles.container}>
     <View style={styles.contain}>
       <View style={styles.center_container}>
         <View style={styles.left_grp}>
-          
           <View style={styles.grp1}>
             <View style={styles.grp1_shadding}></View>
             <Center>
@@ -44,11 +43,9 @@ function HomeStudScreen({ navigation }) {
               </TouchableOpacity>
             </Center>
           </View> */}
-
         </View>
 
         <View style={styles.right_grp}>
-          
           <View style={styles.grp2}>
             <View style={styles.grp2_shadding}></View>
             <Center>
@@ -57,7 +54,7 @@ function HomeStudScreen({ navigation }) {
                 // onPress={() => navigation.navigate("QRGenerator")}
               >
                 <View style={styles.rect8}>
-                <EntypoIcon name="list" style={styles.icon3}></EntypoIcon>
+                  <EntypoIcon name="list" style={styles.icon3}></EntypoIcon>
                   <Text style={styles.viewList}>View List</Text>
                 </View>
               </TouchableOpacity>
@@ -81,7 +78,6 @@ function HomeStudScreen({ navigation }) {
               </TouchableOpacity>
             </Center>
           </View> */}
-
         </View>
       </View>
     </View>

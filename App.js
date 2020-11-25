@@ -12,7 +12,6 @@ import firebase from "./db/firebaseDB";
 // import RootScreen from "./components/HomeRootScreen";
 import SearchScreen from "./components/SearchScreen";
 import AccScreen from "./components/AccScreen";
-
 import HomeHostScreen from "./components/HomeHostScreen";
 import StudScreen from "./components/HomeStudScreen";
 import QRGenerator from "./components/GenerateQR_func";
@@ -76,7 +75,6 @@ function TabScreen({ usr_info }) {
 export default class App extends Component{
   constructor(props) {
     super(props);
-    this.firestoreRef = firebase.firestore().collection("hosts").doc("engineering");
     this.state = {
       usr_obj: {
         signedIn: false,
@@ -87,7 +85,9 @@ export default class App extends Component{
         photoUrl: "",
       },
       profArr: [],
+      homePanel: HomeHostScreen,
     };
+    this.firestoreRef = firebase.firestore().collection("hosts").where('email', '==', this.state.usr_obj.email);
   }
 
   componentDidMount(){
@@ -100,12 +100,16 @@ export default class App extends Component{
   };
 
   getDoc = (querySnapshot) => {
-    // querySnapshot.get((res) => {
-    //   const email = res.data();
-    //   this.state.profArr.push(email);
-    // });
-    const email = querySnapshot.data();
-    this.state.profArr.push(email);
+    if(querySnapshot.empty){
+      console.log("No matched email")
+      this.setState({homePanel: StudScreen});
+    }
+    querySnapshot.forEach((res) => {
+      const email = res.data();
+      this.state.profArr.push(email);
+    });
+    // const email = querySnapshot.data();
+    // this.state.profArr.push(email);
   };
 
   signIn = async () => {
@@ -144,7 +148,7 @@ export default class App extends Component{
         <NavigationContainer>
           <Stack.Navigator>
             <Stack.Screen name="TabScreen" options={{ title: "Home Screen" }}>
-              {() => <TabScreen usr_info={this.state.usr_obj} />}
+              {() => <this.state.homePanel usr_info={this.state.usr_obj} />}
             </Stack.Screen>
             <Stack.Screen
               name="QRGenerator"
