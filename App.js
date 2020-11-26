@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React, { Component } from "react";
 import { Button, View, Text, StyleSheet } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
@@ -9,13 +9,15 @@ import FeatherIcon from "react-native-vector-icons/Feather";
 import MaterialCommunityIconsIcon from "react-native-vector-icons/MaterialCommunityIcons";
 import firebase from "./db/firebaseDB";
 
-// import RootScreen from "./components/HomeRootScreen";
 import SearchScreen from "./components/SearchScreen";
 import AccScreen from "./components/AccScreen";
 import HomeHostScreen from "./components/HomeHostScreen";
-import StudScreen from "./components/HomeStudScreen";
+import HomeStudScreen from "./components/HomeStudScreen";
 import QRGenerator from "./components/GenerateQR_func";
 import AddLectureScreen from "./components/AddLectureScreen";
+
+// disable yellow box mesg
+// console.disableYellowBox = true;
 
 function LoginPage(props) {
   // init landing page for the Google Signin
@@ -29,6 +31,9 @@ function LoginPage(props) {
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
+
+// make it global across the screen
+global.HomePanel = HomeHostScreen;
 
 function TabScreen({ usr_info }) {
   // console.log("The props val: " + usr_info)
@@ -58,7 +63,7 @@ function TabScreen({ usr_info }) {
       })}
     >
       <Tab.Screen name="Home" options={{ title: "Home Screen" }}>
-        {() => <HomeHostScreen usr_obj={usr_info} />}
+        {() => <HomePanel usr_obj={usr_info} />}
       </Tab.Screen>
       <Tab.Screen
         name="Search"
@@ -72,7 +77,7 @@ function TabScreen({ usr_info }) {
   );
 }
 
-export default class App extends Component{
+export default class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -85,24 +90,26 @@ export default class App extends Component{
         photoUrl: "",
       },
       profArr: [],
-      homePanel: HomeHostScreen,
     };
-    this.firestoreRef = firebase.firestore().collection("hosts").where('email', '==', this.state.usr_obj.email);
+    this.firestoreRef = firebase
+      .firestore()
+      .collection("hosts")
+      .where("email", "==", this.state.usr_obj.email);
   }
 
-  componentDidMount(){
+  componentDidMount() {
     // this.unsubscribe = this.firestoreRef.onSnapshot(this.getDoc);
-    this.unsubscribe = this.firestoreRef.onSnapshot(this.getDoc)
-  };
+    this.unsubscribe = this.firestoreRef.onSnapshot(this.getDoc);
+  }
 
-  componentWillUnmount(){
+  componentWillUnmount() {
     this.unsubscribe();
-  };
+  }
 
   getDoc = (querySnapshot) => {
-    if(querySnapshot.empty){
-      console.log("No matched email")
-      this.setState({homePanel: StudScreen});
+    if (querySnapshot.empty) {
+      // console.log("No matched email");
+      global.HomePanel = HomeStudScreen;
     }
     querySnapshot.forEach((res) => {
       const email = res.data();
@@ -143,12 +150,12 @@ export default class App extends Component{
 
   render() {
     if (this.state.usr_obj.signedIn) {
-      console.log(this.state.profArr);
+      // console.log(this.state.profArr);
       return (
         <NavigationContainer>
           <Stack.Navigator>
             <Stack.Screen name="TabScreen" options={{ title: "Home Screen" }}>
-              {() => <this.state.homePanel usr_info={this.state.usr_obj} />}
+              {() => <TabScreen usr_info={this.state.usr_obj} />}
             </Stack.Screen>
             <Stack.Screen
               name="QRGenerator"

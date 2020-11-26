@@ -1,7 +1,7 @@
 # NYIT-attendance-app
 CSCI 318 - Group Project
 
----
+<br>
 
 ## Get start
   * install the required libraries<br>
