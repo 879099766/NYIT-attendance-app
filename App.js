@@ -4,6 +4,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import * as Network from 'expo-network';
 import NetInfo from "@react-native-community/netinfo";
 import * as Device from 'expo-device';
+import * as Application from 'expo-application';
 
 export default function App() {
   
@@ -23,11 +24,19 @@ export default function App() {
       console.log("IP Address:", i_p);
       let s_sid= state.details.ssid;
       console.log("SSID:", s_sid);
-      let mac = Network.getMacAddressAsync({});
-      console.log("MAC: ", mac);
+      if (OS == "iOS")
+      {
+        (async () => {
+          let idfv = await Application.getIosIdForVendorAsync();
+          console.log("IDFV: ", idfv);
+        })();
+      }
+      else
+      {
+        let mac = Network.getMacAddressAsync();
+        console.log("MAC Address: ", mac);
+      }
     }
-    else
-      console.log("Device is not connected to WiFi.");
   });
 
   return (
