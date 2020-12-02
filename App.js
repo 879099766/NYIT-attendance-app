@@ -33,8 +33,10 @@ export default function App() {
       }
       else
       {
-        let mac = Network.getMacAddressAsync();
-        console.log("MAC Address: ", mac);
+        (async () => {
+          let mac = Network.getMacAddressAsync();
+          console.log("MAC Address: ", mac);
+        })();
       }
     }
   });
