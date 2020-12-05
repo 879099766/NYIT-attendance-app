@@ -17,7 +17,7 @@ import QRGenerator from "./components/GenerateQR_func";
 import AddLectureScreen from "./components/AddLectureScreen";
 
 // disable yellow box mesg
-// console.disableYellowBox = true;
+console.disableYellowBox = true;
 
 function LoginPage(props) {
   // init landing page for the Google Signin
@@ -32,11 +32,10 @@ function LoginPage(props) {
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
-// make it global across the screen
-global.HomePanel = HomeHostScreen;
-
-function TabScreen({ usr_info }) {
+function TabScreen({ usr_info, isHost }) {
   // console.log("The props val: " + usr_info)
+
+  console.log("Is Host? " + isHost);
   return (
     <Tab.Navigator
       screenOptions={({ route }) => ({
@@ -62,9 +61,16 @@ function TabScreen({ usr_info }) {
         },
       })}
     >
-      <Tab.Screen name="Home" options={{ title: "Home Screen" }}>
-        {() => <HomePanel usr_obj={usr_info} />}
+      {isHost ? (
+        <Tab.Screen name="Home" options={{ title: "Home Screen" }}>
+        {() => <HomeHostScreen usr_obj={usr_info} />}
       </Tab.Screen>
+      ) : (
+        <Tab.Screen name="Home" options={{ title: "Home Screen" }}>
+          {() => <HomeStudScreen usr_obj={usr_info} />}
+        </Tab.Screen>
+      )}
+      
       <Tab.Screen
         name="Search"
         component={SearchScreen}
@@ -90,12 +96,15 @@ export default class App extends Component {
         photoUrl: "",
       },
       profArr: [],
+      isHost: true,
     };
     this.firestoreRef = firebase
       .firestore()
       .collection("hosts")
       .where("email", "==", this.state.usr_obj.email);
   }
+
+  // const global.HomePanel = HomeHostScreen;
 
   componentDidMount() {
     // this.unsubscribe = this.firestoreRef.onSnapshot(this.getDoc);
@@ -109,6 +118,7 @@ export default class App extends Component {
   getDoc = (querySnapshot) => {
     if (querySnapshot.empty) {
       // console.log("No matched email");
+      this.setState({isHost: false });
       global.HomePanel = HomeStudScreen;
     }
     querySnapshot.forEach((res) => {
@@ -155,7 +165,7 @@ export default class App extends Component {
         <NavigationContainer>
           <Stack.Navigator>
             <Stack.Screen name="TabScreen" options={{ title: "Home Screen" }}>
-              {() => <TabScreen usr_info={this.state.usr_obj} />}
+              {() => <TabScreen usr_info={this.state.usr_obj} isHost={this.state.isHost}/>}
             </Stack.Screen>
             <Stack.Screen
               name="QRGenerator"

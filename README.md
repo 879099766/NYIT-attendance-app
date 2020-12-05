@@ -8,7 +8,6 @@ CSCI 318 - Group Project
   ```
   npm install
   ```
-  <br>
 
   * Create a Google API: <a href="https://console.developers.google.com/apis/dashboard"> here </a>
   * Sign up firebase: <a href="https://console.firebase.google.com/">here</a>
