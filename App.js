@@ -15,6 +15,7 @@ import HomeHostScreen from "./components/HomeHostScreen";
 import HomeStudScreen from "./components/HomeStudScreen";
 import QRGenerator from "./components/GenerateQR_func";
 import AddLectureScreen from "./components/AddLectureScreen";
+import CameraAccess from "./components/CameraAccess";
 
 // disable yellow box mesg
 console.disableYellowBox = true;
@@ -132,9 +133,8 @@ export default class App extends Component {
   signIn = async () => {
     try {
       const result = await Google.logInAsync({
-        androidClientId:
-          "117030962609-9mblopptuccmm9fqhi2uv7eeea9bk1vh.apps.googleusercontent.com",
-        // iosClientId: YOUR_CLIENT_ID_HERE,
+        // androidClientId: android API Key
+        // iosClientId : "ios API Key",
         scopes: ["profile", "email"],
       });
 
@@ -177,6 +177,11 @@ export default class App extends Component {
               component={AddLectureScreen}
               options={{ title: "Add Lecture" }}
             />
+             <Stack.Screen 
+              name="CameraAccess" 
+              component={CameraAccess} 
+            />
+
           </Stack.Navigator>
         </NavigationContainer>
       );

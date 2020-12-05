@@ -9,8 +9,10 @@ import {
 import MaterialCommunityIconsIcon from "react-native-vector-icons/MaterialCommunityIcons";
 import { Center } from "@builderx/utils";
 import EntypoIcon from "react-native-vector-icons/Entypo";
+import { useNavigation } from '@react-navigation/native';
 
 function HomeStudScreen() {
+  const navigation = useNavigation();
   // navigation.setOptions({ title: 'Home Screen' })
   return (
     // <View style={styles.container}>
@@ -20,7 +22,7 @@ function HomeStudScreen() {
           <View style={styles.grp1}>
             <View style={styles.grp1_shadding}></View>
             <Center>
-              <TouchableOpacity style={styles.grp1_btn}>
+              <TouchableOpacity style={styles.grp1_btn} onPress={() => navigation.navigate("CameraAccess")}>
                 <View style={styles.rect6}>
                   <MaterialCommunityIconsIcon
                     name="qrcode-scan"
