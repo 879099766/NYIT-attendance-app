@@ -2,15 +2,19 @@ import * as React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, Dimensions, Alert } from 'react-native';
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 import QR_generate from "./QR_generate";
+import MaterialIconsIcon from "react-native-vector-icons/MaterialIcons";
 
 export default function HomeScreen({navigation}) {
   return (
     <View style={styles.container}>
       <View style={styles.group}>
         <View style={styles.buttonRow}>
-          <TouchableOpacity style={styles.button} onPress={() => navigation.navigate("CameraAccess")}>
-            <Icon name="qrcode-scan" style={styles.icon}></Icon>
-            <Text style={styles.scanRqCode1}>Scan QR Code</Text>
+          <TouchableOpacity style={styles.button} onPress={() => navigation.navigate("AddLectureScreen")}>
+                  <MaterialIconsIcon
+                    name="add-to-photos"
+                    style={styles.icon}
+                  ></MaterialIconsIcon>
+            <Text style={styles.scanRqCode1}>Add Lecture</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.button2} onPress={() => navigation.navigate("QR_generate")}>
             <Icon name="qrcode-edit" style={styles.icon}></Icon>
@@ -122,6 +126,8 @@ const styles = StyleSheet.create({
     overflow: "visible",
     marginLeft: 26
   },
+
+  
 
   generateRqCode: {
     // fontFamily: "roboto-700",

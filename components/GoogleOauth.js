@@ -19,7 +19,7 @@ export default class GoogleOauth extends React.Component{
     try {
       const result = await Google.logInAsync({
         // androidClientId: "<YOUR GOOGLE API KEY HERE>",
-        // iosClientId: "<YOUR IOS API KEY HERE>",
+        iosClientId: "<YOUR IOS API KEY HERE>",
         scopes: ['profile', 'email'],
       });
   
@@ -31,7 +31,7 @@ export default class GoogleOauth extends React.Component{
           photoUrl: result.user.photoUrl
         }) 
 
-        // console.log("\n\nRESULT: ", result, "\n\n")
+        console.log("\n\nRESULT: ", result, "\n\n")
 
       
     //  return <AccScreen userInfo={result}/>
@@ -60,8 +60,8 @@ export default class GoogleOauth extends React.Component{
   const LoginPage = props => {
     return (
       <View>
-        <Text style={styles.header}>Sign In With Google</Text>
-        <Button title="Sign in with Google" onPress={() => props.signIn()} />
+        <Text style={styles.header}>Sign In With NYIT Credentials</Text>
+        <Button title="Sign in" onPress={() => props.signIn()} />
       </View>
     )
   }
@@ -72,10 +72,10 @@ export default class GoogleOauth extends React.Component{
       <View style={styles.container}>
         <Text style={styles.header}>Welcome:{props.name}</Text>
         <Image style={styles.image} source={{ uri: props.photoUrl }} />
-        <TouchableOpacity onPress={() => navigation.navigate('Home')} style={styles.button}>
+        <TouchableOpacity onPress={() => alert('Hello, world!')} style={styles.button}>
         <Text style={styles.button1}>Student</Text>
       </TouchableOpacity>
-      <TouchableOpacity onPress={() => alert('Hello, world!')} style={styles.button}>
+      <TouchableOpacity onPress={() => navigation.navigate('Home')} style={styles.button}>
         <Text style={styles.button2}>Professor</Text>
       </TouchableOpacity>
       </View>
@@ -106,7 +106,7 @@ const styles = StyleSheet.create({
     justifyContent: "center"
   },
   header: {
-    fontSize: 25
+    fontSize: 20
   },
   image: {
     marginTop: 15,

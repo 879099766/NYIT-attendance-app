@@ -18,7 +18,7 @@ export default function GenerateQR_func({navigation}) {
       ID : (parseInt(state.ID) + 1).toString(),
       newString : Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15), 
        });
-       if (state.ID == 2) {
+       if (state.ID == 5) {
          navigation.navigate('Home');
       }
 
@@ -32,7 +32,7 @@ export default function GenerateQR_func({navigation}) {
         style={styles.botton_timer}
         size={30}
         id={state.ID}
-        until={2}
+        until={300}
         onFinish={generateQR}
         digitStyle={{
           backgroundColor: "#FFF",

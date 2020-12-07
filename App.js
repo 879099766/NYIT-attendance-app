@@ -11,6 +11,7 @@ import AccScreen from './components/AccScreen';
 import CameraAccess from './components/CameraAccess.js';
 import GoogleOauth from './components/GoogleOauth';
 import QR_generate from './components/QR_generate';
+import AddLectureScreen from "./components/AddLectureScreen";
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -26,6 +27,7 @@ export default function App() {
       <Stack.Screen name="Home" component={Home} />
       <Stack.Screen name="CameraAccess" component={CameraAccess} />
       <Stack.Screen name="QR_generate" component={QR_generate} />
+      <Stack.Screen name="AddLectureScreen" component={AddLectureScreen} options={{ title: "Add Lecture" }}/>
       </Stack.Navigator>
     </NavigationContainer>
   )
